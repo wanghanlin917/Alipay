@@ -89,7 +89,7 @@ class AliPay(object):
 
         # 获得最终的订单信息字符串
         signed_string = quoted_string + "&sign=" + quote_plus(sign)
-        print("signed_string",signed_string)
+        print("signed_string", signed_string)
         return signed_string
 
     def ordered_data(self, data):
@@ -115,10 +115,10 @@ class AliPay(object):
 
     def _verify(self, raw_content, signature):
         # 开始计算签名
-        print("signature",signature)
+        print("signature", signature)
         key = self.alipay_public_key
         signer = PKCS1_v1_5.new(key)
-        print("signer",signer)
+        print("signer", signer)
         digest = SHA256.new()
         digest.update(raw_content.encode("utf8"))
         if signer.verify(digest, decodebytes(signature.encode("utf8"))):
